@@ -269,7 +269,7 @@ export async function prepareItemMacro(a: string, i: string, options?: any) {
     // Talents
     case EntryType.TALENT:
       // If we aren't passed a rank, default to current rank
-      let rank = options.rank ? options.rank : item.data.data.curr_rank;
+      let rank = (options.rank ? options.rank : item.data.data.curr_rank)-1;
 
       let talData: LancerTalentMacroData = {
         talent: item.data.data,
@@ -597,7 +597,7 @@ async function prepareAttackMacro({
     mData.grit = pilotEnt.Grit;
     mData.acc = 0;
     mData.tags = weaponData.Tags;
-    mData.overkill = is_overkill(itemEnt);    
+    mData.overkill = is_overkill(itemEnt);
     mData.effect = weaponData.Effect;
   } else if (actor.data.type === EntryType.PILOT) {
     pilotEnt = await actor.data.data.derived.mm_promise;
